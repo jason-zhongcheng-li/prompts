@@ -33,6 +33,7 @@ const Nav = () => {
                width={30}
                height={30}
                className="object-contain"
+               alt="logo"
             />
             <p className="logo_text">Promptopia</p>
          </Link>
@@ -88,6 +89,7 @@ const Nav = () => {
                      width={30}
                      height={30}
                      className="object-contain"
+                     alt="menu"
                      onClick={() => setToggleDropdown((prev) => !prev)}
                   />
                   {toggleDropdown && (
