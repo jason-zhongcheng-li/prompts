@@ -6,7 +6,7 @@ export const connectToDB = async () => {
    mongoose.set('strictQuery', true);
 
    if (isConnected) {
-      console.log('MongoDB is already connected');
+      console.info('MongoDB is already connected');
    }
 
    try {
@@ -14,8 +14,8 @@ export const connectToDB = async () => {
          dbName: 'share_prompt',
       });
       isConnected = true;
-      console.log('MongoDB connected');
+      console.info('MongoDB connected');
    } catch (error) {
-      console.log(error);
+      console.error(error);
    }
 };

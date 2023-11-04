@@ -59,6 +59,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
                </Link>
                <button
                   type="submit"
+                  onClick={handleSubmit}
                   disabled={submitting}
                   className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
                >
