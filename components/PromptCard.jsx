@@ -8,8 +8,12 @@ import { useRouter, usePathname } from '@node_modules/next/navigation';
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
    const [copied, setCopied] = useState('');
 
-   const onCopyClicked = (prompt) => {
-      setCopied(prompt);
+   const handleCopy = () => {
+      setCopied(post.prompt);
+      navigator.clipboard.writeText(post.prompt);
+      setTimeout(() => {
+         setCopied('');
+      }, 3000);
    };
 
    return (
@@ -32,10 +36,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
                   </p>
                </div>
             </div>
-            <div
-               className="copy_btn"
-               onClick={() => onCopyClicked(post.prompt)}
-            >
+            <div className="copy_btn" onClick={handleCopy}>
                <Image
                   src={
                      copied === post.prompt

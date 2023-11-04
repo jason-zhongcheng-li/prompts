@@ -29,7 +29,9 @@ const Feed = () => {
       fetchPost();
    }, []);
 
-   const handleSearchTextChanged = (e) => {};
+   const handleSearchTextChanged = (e) => {
+      setSearchText(e.target.value);
+   };
 
    return (
       <section className="feed">
