@@ -7,12 +7,14 @@ import Profile from '@components/Profile';
 
 const MyProfile = ({ username, email, image }) => {
    const { data: session } = useSession();
+   const router = useRouter();
 
    const [posts, setPosts] = useState([]);
 
    useEffect(() => {
       const fetchPost = async () => {
          const response = await fetch(`/api/users/${session?.user.id}/posts`);
+         console.log('response = ', response);
          const data = await response.json();
 
          setPosts(data);
@@ -22,7 +24,9 @@ const MyProfile = ({ username, email, image }) => {
       }
    }, [session?.user]);
 
-   const handleEdit = () => {};
+   const handleEdit = (post) => {
+      router.push(`/update-prompt?id=${post._id}`);
+   };
 
    const handleDelete = async () => {};
 
