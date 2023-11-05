@@ -1,19 +1,18 @@
 import PromptCard from './PromptCard';
-const PromptCardList = ({ data, handleTagClick }) => (
+const PromptCardList = ({ data, handleTagClick, handleEdit }) => (
    <div className="mt-6 prompt_layout">
       {data.map((post) => (
          <PromptCard
             key={post._id}
             post={post}
             handleTagClick={handleTagClick}
+            handleEdit={handleEdit}
          />
       ))}
    </div>
 );
 
 const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
-   const handlePromptEdit = async () => {};
-
    return (
       <section className="w-full">
          <h1 className="head_text text-left">
@@ -22,7 +21,8 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
          <p className="desc text-left">{desc}</p>
          <PromptCardList
             data={data}
-            handleEdit={handlePromptEdit}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
             classNames="mt-8"
          />
       </section>
