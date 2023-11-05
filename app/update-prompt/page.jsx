@@ -42,7 +42,7 @@ const UpdatePrompt = ({ param }) => {
             method: 'PATCH',
             body: JSON.stringify({
                ...post,
-               userId: session?.user.id,
+               userId: session?.user._id,
             }),
          });
 
