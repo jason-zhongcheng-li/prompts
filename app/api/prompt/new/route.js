@@ -13,8 +13,6 @@ export const POST = async (req, res) => {
 
       return new Response(JSON.stringify(newPrompt), { status: 201 });
    } catch (error) {
-      return new Response(
-         JSON.stringify('Failed to create a prompt', { status: 400 }),
-      );
+      return new Response('Failed to create a prompt', { status: 400 });
    }
 };
