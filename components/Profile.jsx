@@ -1,11 +1,11 @@
 import PromptCard from './PromptCard';
-const PromptCardList = ({ data, handleTagClick, handleEdit, handleDelete }) => (
+const PromptCardList = ({ data, handleEdit, handleDelete }) => (
    <div className="mt-6 prompt_layout">
       {data?.map((post) => (
          <PromptCard
             key={post._id}
             post={post}
-            handleTagClick={handleTagClick}
+            // handleTagClick={handleTagClick}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
          />
@@ -24,7 +24,6 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
             data={data}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
-            classNames="mt-8"
          />
       </section>
    );
