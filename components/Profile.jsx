@@ -1,4 +1,4 @@
-import PromptCard from './PromptCard';
+import PromptCard from './prompt-card/PromptCard';
 const PromptCardList = ({ data, handleEdit, handleDelete }) => (
    <div className="mt-6 prompt_layout">
       {data?.map((post) => (
