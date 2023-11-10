@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PromptCard from './PromptCard';
+import useSWR from '@node_modules/swr/core/dist/index';
 
 const PromptCardList = ({ data, handleTagClick }) => (
    <div className="mt-16 prompt_layout">
@@ -15,19 +16,14 @@ const PromptCardList = ({ data, handleTagClick }) => (
    </div>
 );
 
+const fetchPosts = async () => {
+   const response = await fetch('/api/prompt');
+   return await response.json();
+};
+
 const Feed = () => {
-   const [posts, setPosts] = useState([]);
    const [searchText, setSearchText] = useState('');
-
-   useEffect(() => {
-      const fetchPost = async () => {
-         const response = await fetch('/api/prompt');
-         const data = await response.json();
-
-         setPosts(data);
-      };
-      fetchPost();
-   }, []);
+   const { data: posts, error, isLoading } = useSWR('/api/prompt', fetchPosts);
 
    const handleSearchTextChanged = (e) => {
       setSearchText(e.target.value);
@@ -45,8 +41,9 @@ const Feed = () => {
                className="search_input peer"
             />
          </form>
-
-         <PromptCardList data={posts} handleTagClick={() => {}} />
+         {!isLoading && (
+            <PromptCardList data={posts} handleTagClick={() => {}} />
+         )}
       </section>
    );
 };
