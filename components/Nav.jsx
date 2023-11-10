@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import Link from '@node_modules/next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
