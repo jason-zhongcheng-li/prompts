@@ -1,0 +1,90 @@
+@value colorGreyExtraLight, colorWhite from '../../styles/colors.module.scss';
+
+.skeletonLine {
+   border-radius: 4px;
+   position: relative;
+   overflow: hidden;
+   height: 1.25rem;
+   background: colorGreyExtraLight;
+}
+
+.smaller {
+   height: 0.625rem;
+}
+
+.small {
+   height: 1rem;
+}
+
+.medium {
+   height: 1.25rem;
+}
+
+.large {
+   height: 2rem;
+}
+
+.squareLine {
+   border-radius: 0;
+}
+
+.curved {
+   border-radius: 4px;
+}
+
+.square {
+   border-radius: 0;
+}
+
+.rounded {
+   border-radius: 1.875rem;
+}
+
+.image {
+   display: flex;
+   height: inherit;
+   width: inherit;
+}
+
+.imageLine {
+   flex: 1;
+   height: inherit;
+}
+
+.skeletonLine + .skeletonLine {
+   margin-top: 0.375rem;
+}
+
+.light {
+   background: colorWhite;
+}
+
+.withShadow {
+   box-shadow: 0 4px 10px 0 rgba(33, 33, 33, 0.15);
+}
+
+.skeletonLine::before {
+   content: '';
+   display: block;
+   position: absolute;
+   left: -150px;
+   top: 0;
+   height: 100%;
+   width: 150px;
+   background: linear-gradient(
+      to right,
+      transparent 0%,
+      #e8e8e8 50%,
+      transparent 100%
+   );
+   animation: load 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes load {
+   from {
+      left: -150px;
+   }
+   to {
+      left: 100%;
+   }
+}

@@ -1,18 +1,26 @@
 'use client';
 
-import React, { useState } from 'react';
-import PromptCard from './PromptCard';
+import { useState } from 'react';
 import useSWR from '@node_modules/swr/core/dist/index';
+import PromptCard from './prompt-card/PromptCard';
+import PromptCardLoader from './prompt-card/PromptCardLoader';
 
-const PromptCardList = ({ data, handleTagClick }) => (
+const PromptCardList = ({ data, handleTagClick, isLoading }) => (
    <div className="mt-16 prompt_layout">
-      {data?.map((post) => (
-         <PromptCard
-            key={post._id}
-            post={post}
-            handleTagClick={handleTagClick}
-         />
-      ))}
+      {isLoading ? (
+         <>
+            <PromptCardLoader />
+            <PromptCardLoader />
+         </>
+      ) : (
+         data?.map((post) => (
+            <PromptCard
+               key={post._id}
+               post={post}
+               handleTagClick={handleTagClick}
+            />
+         ))
+      )}
    </div>
 );
 
@@ -41,9 +49,11 @@ const Feed = () => {
                className="search_input peer"
             />
          </form>
-         {!isLoading && (
-            <PromptCardList data={posts} handleTagClick={() => {}} />
-         )}
+         <PromptCardList
+            data={posts}
+            handleTagClick={() => {}}
+            isLoading={isLoading}
+         />
       </section>
    );
 };
