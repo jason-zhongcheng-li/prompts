@@ -9,22 +9,22 @@ const PromptCardLoader = () => {
                   <AvatarPlaceholder />
                   <div className="flex flex-col">
                      <h3 className="font-satoshi font-bold text-gray-900">
-                        <div class="h-3.5 bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-4  "></div>
+                        <div className="h-3.5 bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-4  "></div>
                      </h3>
                      <div className="font-inter text-sm text-gray-500">
-                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-1"></div>
+                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-1"></div>
                      </div>
                   </div>
                </div>
                <div className="copy_btn"></div>
             </div>
             <div className="my-4 font-satoshi text-sm text-gray-700">
-               <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-72 mb-4  "></div>
-               <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-72 mb-4  "></div>
-               <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-72 mb-4  "></div>
+               <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-72 mb-4  "></div>
+               <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-72 mb-4  "></div>
+               <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-72 mb-4  "></div>
             </div>
             <div className="font-inter text-sm blue_gradient cursor-pointer">
-               <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4  "></div>
+               <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4  "></div>
             </div>
          </div>
       </div>
