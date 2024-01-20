@@ -19,3 +19,15 @@ export const connectToDB = async () => {
       console.error(error);
    }
 };
+
+export const disconnectToDB = async () => {
+   try {
+      if (isConnected) {
+         await mongoose.disconnect();
+      }
+      isConnected = false;
+      console.info('MongoDB disconnected');
+   } catch (error) {
+      console.error(error);
+   }
+};
