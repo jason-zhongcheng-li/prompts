@@ -4,23 +4,27 @@ import { useState } from 'react';
 import useSWR from '@node_modules/swr/core/dist/index';
 import PromptCard from './prompt-card/PromptCard';
 import PromptCardLoader from './prompt-card/PromptCardLoader';
+import Loader from './loader/Loader';
 
 const PromptCardList = ({ data, handleTagClick, isLoading }) => (
    <div className="mt-16 prompt_layout">
-      {isLoading ? (
-         <>
-            <PromptCardLoader />
-            <PromptCardLoader />
-         </>
-      ) : (
-         data?.map((post) => (
+      <Loader
+         isLoading={isLoading}
+         fallback={
+            <>
+               <PromptCardLoader />
+               <PromptCardLoader />
+            </>
+         }
+      >
+         {data?.map((post) => (
             <PromptCard
                key={post._id}
                post={post}
                handleTagClick={handleTagClick}
             />
-         ))
-      )}
+         ))}
+      </Loader>
    </div>
 );
 
