@@ -1,6 +1,9 @@
+'use client';
+
 import AvatarPlaceholder from '../skeleton/avatar-placeholder';
 
 const PromptCardLoader = () => {
+   console.log('calling PromptCardLoader');
    return (
       <div className="prompt_card ">
          <div className="animate-pulse">
