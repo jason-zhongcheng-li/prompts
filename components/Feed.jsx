@@ -1,17 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import useSWR from '@node_modules/swr/core/dist/index';
-import PromptCard from './prompt-card/PromptCard';
 import PromptCardLoader from './prompt-card/PromptCardLoader';
-import Loader from './loader/Loader';
+
+const PromptCard = React.lazy(() => import('./prompt-card/PromptCard'));
 
 const PromptCardList = ({ data, handleTagClick, isLoading }) => (
    <div className="mt-16 prompt_layout">
-      <Loader
-         isLoading={isLoading}
+      <Suspense
          fallback={
             <>
+               <PromptCardLoader />
+               <PromptCardLoader />
+               <PromptCardLoader />
+               <PromptCardLoader />
                <PromptCardLoader />
                <PromptCardLoader />
             </>
@@ -24,7 +27,7 @@ const PromptCardList = ({ data, handleTagClick, isLoading }) => (
                handleTagClick={handleTagClick}
             />
          ))}
-      </Loader>
+      </Suspense>
    </div>
 );
 

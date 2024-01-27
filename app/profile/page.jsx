@@ -12,6 +12,7 @@ const MyProfile = ({ username, email, image }) => {
    const [posts, setPosts] = useState([]);
 
    useEffect(() => {
+      const controller = new AbortController();
       const fetchPost = async () => {
          const response = await fetch(`/api/users/${session?.user.id}/posts`);
          console.log('response = ', response);
@@ -22,6 +23,7 @@ const MyProfile = ({ username, email, image }) => {
       if (session?.user.id) {
          fetchPost();
       }
+      return () => controller.abort();
    }, [session?.user]);
 
    const handleEdit = (post) => {
