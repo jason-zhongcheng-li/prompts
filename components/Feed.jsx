@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import useSWR from '@node_modules/swr/core/dist/index';
 import PromptCardLoader from './prompt-card/PromptCardLoader';
 
@@ -38,7 +38,25 @@ const fetchPosts = async () => {
 
 const Feed = () => {
    const [searchText, setSearchText] = useState('');
-   const { data: posts, error, isLoading } = useSWR('/api/prompt', fetchPosts);
+
+   // const { data: posts, error, isLoading } = useSWR('/api/prompt', fetchPosts);
+   const [posts, setPosts] = useState([]);
+
+   useEffect(() => {
+      const controller = new AbortController();
+      const signal = controller.signal;
+      const fetchPost = async () => {
+         const response = await fetch('/api/prompt', {
+            signal,
+         });
+         const data = await response.json();
+
+         setPosts(data);
+      };
+      fetchPost().catch((error) => console.log('error = ', error));
+
+      return () => controller.abort();
+   }, []);
 
    const handleSearchTextChanged = (e) => {
       setSearchText(e.target.value);
@@ -56,11 +74,7 @@ const Feed = () => {
                className="search_input peer"
             />
          </form>
-         <PromptCardList
-            data={posts}
-            handleTagClick={() => {}}
-            isLoading={isLoading}
-         />
+         <PromptCardList data={posts} handleTagClick={() => {}} />
       </section>
    );
 };
