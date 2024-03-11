@@ -11,7 +11,7 @@ export const metadata = {
 
 const RootLayout = ({ children }) => (
    <html lang="en">
-      <body>
+      <body suppressContentEditableWarning={true}>
          <Provider>
             <div className="main">
                <div className="gradient" />

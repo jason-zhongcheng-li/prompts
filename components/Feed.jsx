@@ -6,7 +6,7 @@ import PromptCardLoader from './prompt-card/PromptCardLoader';
 
 const PromptCard = React.lazy(() => import('./prompt-card/PromptCard'));
 
-const PromptCardList = ({ data, handleTagClick, isLoading }) => (
+const PromptCardList = ({ data, handleTagClick }) => (
    <div className="mt-16 prompt_layout">
       <Suspense
          fallback={
@@ -39,24 +39,23 @@ const fetchPosts = async () => {
 const Feed = () => {
    const [searchText, setSearchText] = useState('');
 
-   // const { data: posts, error, isLoading } = useSWR('/api/prompt', fetchPosts);
-   const [posts, setPosts] = useState([]);
+   const { data: posts } = useSWR('/api/prompt', fetchPosts);
+   // const [posts, setPosts] = useState([]);
 
-   useEffect(() => {
-      const controller = new AbortController();
-      const signal = controller.signal;
-      const fetchPost = async () => {
-         const response = await fetch('/api/prompt', {
-            signal,
-         });
-         const data = await response.json();
+   // useEffect(() => {
+   //    const controller = new AbortController();
+   //    const signal = controller.signal;
+   //    const fetchPost = async () => {
+   //       const response = await fetch('/api/prompt', {
+   //          signal,
+   //       });
+   //       const data = await response.json();
+   //       setPosts(data);
+   //    };
+   //    fetchPost().catch((error) => console.log('error = ', error));
 
-         setPosts(data);
-      };
-      fetchPost().catch((error) => console.log('error = ', error));
-
-      return () => controller.abort();
-   }, []);
+   //    return () => controller.abort();
+   // }, []);
 
    const handleSearchTextChanged = (e) => {
       setSearchText(e.target.value);
