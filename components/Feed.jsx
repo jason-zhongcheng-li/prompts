@@ -39,7 +39,9 @@ const fetchPosts = async () => {
 const Feed = () => {
    const [searchText, setSearchText] = useState('');
 
-   const { data: posts } = useSWR('/api/prompt', fetchPosts);
+   const { data: posts } = useSWR('/api/prompt', fetchPosts, {
+      revalidateOnMount: true,
+   });
    // const [posts, setPosts] = useState([]);
 
    // useEffect(() => {
