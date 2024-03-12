@@ -1,30 +1,39 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { useSession } from '@node_modules/next-auth/react';
 import { useRouter } from '@node_modules/next/navigation';
+import useSWR from '@node_modules/swr/core/dist/index';
 import Profile from '@components/Profile';
 
-const MyProfile = ({ username, email, image }) => {
+const fetchPosts = async (userId) => {
+   const response = await fetch(`/api/users/${userId}/posts`);
+   return await response.json();
+};
+
+const MyProfile = () => {
    const { data: session } = useSession();
    const router = useRouter();
 
-   const [posts, setPosts] = useState([]);
+   const { data: posts } = useSWR(`/api/users/${session?.user.id}/posts`, () =>
+      fetchPosts(session?.user.id),
+   );
 
-   useEffect(() => {
-      const controller = new AbortController();
-      const fetchPost = async () => {
-         const response = await fetch(`/api/users/${session?.user.id}/posts`);
-         console.log('response = ', response);
-         const data = await response.json();
+   // const [posts, setPosts] = useState([]);
 
-         setPosts(data);
-      };
-      if (session?.user.id) {
-         fetchPost();
-      }
-      return () => controller.abort();
-   }, [session?.user]);
+   // useEffect(() => {
+   //    const controller = new AbortController();
+   //    const fetchPost = async () => {
+   //       const response = await fetch(`/api/users/${session?.user.id}/posts`);
+   //       console.log('response = ', response);
+   //       const data = await response.json();
+
+   //       setPosts(data);
+   //    };
+   //    if (session?.user.id) {
+   //       fetchPost();
+   //    }
+   //    return () => controller.abort();
+   // }, [session?.user]);
 
    const handleEdit = (post) => {
       router.push(`/update-prompt?id=${post._id}`);
