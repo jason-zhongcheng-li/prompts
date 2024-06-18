@@ -1,7 +1,7 @@
 'use client';
 
 import React, { Suspense, useState, useEffect } from 'react';
-import useSWR from '@node_modules/swr/core/dist/index';
+import useSWR from '@node_modules/swr/dist/core/index';
 import PromptCardLoader from './prompt-card/PromptCardLoader';
 
 const PromptCard = React.lazy(() => import('./prompt-card/PromptCard'));

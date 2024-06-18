@@ -2,7 +2,7 @@
 
 import { useSession } from '@node_modules/next-auth/react';
 import { useRouter } from '@node_modules/next/navigation';
-import useSWR from '@node_modules/swr/core/dist/index';
+import useSWR from '@node_modules/swr/dist/core/index';
 import Profile from '@components/Profile';
 
 const fetchPosts = async (userId) => {
